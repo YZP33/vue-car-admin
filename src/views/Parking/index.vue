@@ -1,11 +1,11 @@
 <template>
     <div>
         <div class="filter-form">
-            <el-row>
+<!--             <el-row>
                 <el-col :span="21">
                     <el-form :inline="true" :model="form" class="demo-form-inline">
                         <el-form-item label="区域">
-                           <CityArea ref="cityArea" :cityAreaValue.sync="form.area" @callback="callbackComponent" />
+                           <CityArea ref="cityArea" :cityAreaValue.sync="form.area" @callback="callbackComponent" />    
                         </el-form-item>
                         <el-form-item label="类型">
                             <el-select v-model="form.type" placeholder="停车场" class="width-120">
@@ -38,7 +38,7 @@
                         </router-link>
                     </div>
                 </el-col>
-            </el-row>
+            </el-row> -->
         </div>
         <TabalData ref="table" :config="table_config">
             <!--禁启用-->
@@ -145,6 +145,8 @@ export default {
                 pageNumber: 1
             }
             // 过滤筛选
+            /** JSON.stringify 转为字符串，基础数据类型会在内存中开辟属于自己的空间 **/
+            /** JSON.parse 再将数据转成JSON类型 **/
             const filterData = JSON.parse(JSON.stringify(this.form));
             for(let key in filterData) {
                 if(filterData[key]) {

@@ -20,7 +20,7 @@
         </el-form-item>
         <!-- 按钮 -->
         <el-form-item>
-            <el-button type="danger" @click="search">搜索</el-button>
+<!--             <el-button type="danger" @click="search">搜索</el-button> -->
             <el-button type="danger" @click="reset" v-if="formConfig.resetButton">重置</el-button>
             <template v-for="item in formHandler">
                 <el-button v-if="item.element === 'link'" :key="item.key" :type="item.type">

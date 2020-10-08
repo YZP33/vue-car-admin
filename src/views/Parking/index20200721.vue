@@ -38,9 +38,10 @@
                         </router-link>
                     </div>
                 </el-col>
-            </el-row>
-            
+            </el-row>     
         </div>
+
+
         <!-- 表格数据 -->
         <el-table :data="tableData" border style="width: 100%" v-loading="table_loading">
             <el-table-column type="selection" width="35"></el-table-column>
@@ -49,17 +50,18 @@
                 <template slot-scope="scoped">
                     <span>{{ scoped.row.type | getType }}</span>
                 </template>
-            </el-table-column>
+            </el-table-column>  
             <el-table-column prop="address" label="区域"></el-table-column>
             <el-table-column prop="carsNumber" label="可停放车辆"></el-table-column>
             <el-table-column prop="disabled" label="禁启用">
+                <!-- 在element ui中加入非文本的新标签 -->
                 <template slot-scope="scope">
                     <el-switch v-model="scope.row.status" active-value="2" inactive-value="1" active-color="#13ce66" inactive-color="#ff4949"> </el-switch>
-                </template>
+                </template> 
             </el-table-column>
             <el-table-column prop="lnglat" label="查看位置">
                 <template slot-scope="scoped">
-                    <el-button type="success" size="mini" @click="showMap(scoped.row)">查看地图</el-button>
+                    <el-button type="success" size="mini"  @click="showMap(scoped.row)">查看地图</el-button>
                 </template>
             </el-table-column>
             <el-table-column label="操作">
@@ -100,7 +102,7 @@ export default {
     data(){
         _this = this;
         return {
-            // 页码
+            // 条数
             total: 0,
             // 当前页码
             currentPage: 1,
@@ -145,7 +147,9 @@ export default {
         /** 获取列表 */
         getParkingList(){
             const requestData = {
+                // 每页条数
                 pageSize: this.pageSize,
+                // 页数
                 pageNumber: this.pageNumber
             }
             // 过滤筛选
@@ -171,6 +175,7 @@ export default {
         },
         /** 编辑 */
         edit(id){
+            console.log(id);
             this.$router.push({
                 name: "ParkingAdd",
                 query: {

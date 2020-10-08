@@ -1,4 +1,5 @@
-<template>
+ <template>
+    <!-- 列表页的列表数据 -->
     <div>
         <FormSearch 
         v-if="table_config.search_form"
@@ -30,6 +31,7 @@
                 </el-table-column>
                 <!--操作 -->
                 <el-table-column v-else-if="item.type === 'operation'" :key="item.prop" :prop="item.prop" :label="item.label" :width="item.width">
+                    <!-- scope就相当于是tableData的一行，与el-table-column唯一对应 -->
                     <template slot-scope="scope">
                         <!--编辑-->
                         <template v-if="item.default && item.default.editButton">
@@ -139,6 +141,7 @@ export default {
                 // 判断数据是否存在
                 if(data) { this.table_data = data.data }
                 // 页码
+                // 随着数据的改变要进行DOM结构的变化
                 this.$nextTick(() => { // 考虑到DOM元素渲染完成时候
                     
                 })
@@ -193,6 +196,9 @@ export default {
         },
         /** 编辑 */
         edit(id, routerNmae){
+            console.log(routerNmae);
+            // 跳转路由
+            // query： 通过明文传参 在url上带一个参数
             this.$router.push({
                 name: routerNmae,
                 query: {

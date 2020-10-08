@@ -8,6 +8,7 @@ export function amapSetMarker(lnglat ,map){
         position: [lnglat.lng, lnglat.lat]
     })
     map.add(marker);
+    // 根据覆盖物定位
     map.setFitView();
 }
 

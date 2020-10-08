@@ -31,11 +31,18 @@ export default {
             lnglat: {},
             map: null,
             zoom: 18,
-            events: {}
+            events: {
+                // 用vue来做高德地图API  
+                // "complete": () => {
+                //     this.mapLoad();
+                // }
+            }
         }
     },
     mounted(){
         // lazyAMapApiLoaderInstance 为了加载高德地图的API
+        // 以下这些方法用的都是高德地图自身的SDK
+        // 如果要用vue来做，则需重写
         lazyAMapApiLoaderInstance.load().then(() => {
             this.mapCreate();
             // 地图点击事件
@@ -63,6 +70,7 @@ export default {
                 center: [116.397045,39.917759],
                 zoom: this.zoom, //初始化地图层级
             });
+            // 检测地图是否加载完成
             this.map.on("complete", () => {
                 this.mapLoad();
             });
@@ -71,6 +79,7 @@ export default {
          * 地图加载完成
          */
         mapLoad(){
+            // 判断options.mapLoad是否为true
             if(this.options.mapLoad) {
                 this.$emit('callback', {
                     function: "mapLoad"

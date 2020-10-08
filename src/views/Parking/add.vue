@@ -102,7 +102,7 @@ export default {
         id: this.$route.query.id,
         // 地图配置
         option_map: {
-            mapLoad: true
+            mapLoad: true  // 添加加载地图的条件
         },
         status: this.$store.state.config.radio_disabled,
         type: this.$store.state.config.parking_type,
@@ -131,6 +131,7 @@ export default {
         },
         /** 地图加载完成 */
         mapLoad(){
+            console.log('333333333333333333333');
             this.getDetaile();
         },
         /** 新增停车场API */
@@ -176,6 +177,7 @@ export default {
                         this.form_data[key] = data[key];
                     }
                 }
+                // 数据交互时候肯定会有一些接口异步 
                 // 设置覆盖物
                 const splitLnglat = data.lnglat.split(",");
                 const lnglat = {
